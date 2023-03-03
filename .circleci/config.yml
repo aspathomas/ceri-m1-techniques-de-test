@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  build_and_test:
+    docker:
+      - image: cimg/openjdk:11.0
+
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: mvn -B -DskipTests clean package
+
+      - run:
+          name: Test
+          command: mvn test
+
+
+workflows:
+  build_and_test:
+    jobs:
+      - build_and_test:
+        filters:
+          branches:
+            only: master
