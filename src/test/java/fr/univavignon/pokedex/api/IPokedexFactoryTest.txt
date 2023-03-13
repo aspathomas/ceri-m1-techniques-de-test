@@ -1,0 +1,15 @@
+package fr.univavignon.pokedex.api;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+
+public class IPokedexFactoryTest {
+
+	IPokedexTest createPokedex(IPokemonMetadataProviderTest metadataProvider, IPokemonFactoryTest pokemonFactory);
+	@Test
+	public void testCreatePokedex() {
+        Mockito.when(iPokedex.size()).thenReturn(2);
+        assertEquals(2, iPokedex.size());
+    }
+
+}

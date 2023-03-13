@@ -1,16 +1,10 @@
+package fr.univavignon.pokedex.api;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import fr.univavignon.pokedex.api.Pokemon;
-import fr.univavignon.pokedex.api.IPokemonFactory;
-
 import static org.junit.Assert.assertEquals;
 
-/**
- * Test Factory interface for class that aims to create Pokemon instance.
- *
- * @author fv
- */
+
 public class IPokemonFactoryTest {
 
     // @Mock
