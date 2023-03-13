@@ -7,10 +7,6 @@ import static org.junit.Assert.assertEquals;
 
 public class IPokemonFactoryTest {
 
-    // @Mock
-    // Pokemon pokemon;
-    // IPokemonFactory iPokemonFactory;
-
 	@Test
 	public void testCreatePokemon() {
         Pokemon pokemon = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
