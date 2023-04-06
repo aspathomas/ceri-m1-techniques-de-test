@@ -35,3 +35,36 @@ Le rendu des TPs se fait au rythme suivant :
 Pour chaque rendu, le projet dans son intégralité doit être déposé sur la plateforme.
 
 [^1]: Si vous n’êtes vraiment pas à l’aise avec cet outil nous vous conseillons quand même vivement de vous y mettre.
+
+Aspa Thomas
+
+ILSEN Alt-1
+
+<p align="center" style="color: #ffcb05; font-size: 2rem;">
+Félicitation tu as gagné le badge suivant :
+</p>
+<p align="center">
+    <img
+        alt="Dessin d'un voltorbe"
+        src="images/voltorbe.png"
+        title="Désintégrateur"
+    />
+</p>
+<p align="center" style="color: #ffcb05; font-size: 2rem;">
+Désintégrateur !
+</p>
+
+
+<p align="center" style="color: #ffcb05; font-size: 2rem;">
+Félicitation tu as gagné le badge suivant :
+</p>
+<p align="center">
+    <img
+        alt="Dessin d'un métamorph"
+        src="images/metamorph.png"
+        title="Métamocker"
+    />
+</p>
+<p align="center" style="color: #ffcb05; font-size: 2rem;">
+Métamocker !
+</p>
