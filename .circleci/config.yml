@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  codecov: codecov/codecov@3.2.3
 jobs:
 
   build_and_test:
@@ -15,10 +16,7 @@ jobs:
       - run:
           name: Test
           command: mvn test
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - codecov/upload
 
 
 workflows:
