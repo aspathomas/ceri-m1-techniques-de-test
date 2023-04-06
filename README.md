@@ -40,31 +40,7 @@ Aspa Thomas
 
 ILSEN Alt-1
 
-<p align="center" style="color: #ffcb05; font-size: 2rem;">
-Félicitation tu as gagné le badge suivant :
-</p>
-<p align="center">
-    <img
-        alt="Dessin d'un voltorbe"
-        src="images/voltorbe.png"
-        title="Désintégrateur"
-    />
-</p>
-<p align="center" style="color: #ffcb05; font-size: 2rem;">
-Désintégrateur !
-</p>
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/aspathomas/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/aspathomas/ceri-m1-techniques-de-test/tree/master)
 
 
-<p align="center" style="color: #ffcb05; font-size: 2rem;">
-Félicitation tu as gagné le badge suivant :
-</p>
-<p align="center">
-    <img
-        alt="Dessin d'un métamorph"
-        src="images/metamorph.png"
-        title="Métamocker"
-    />
-</p>
-<p align="center" style="color: #ffcb05; font-size: 2rem;">
-Métamocker !
-</p>
+[![codecov](https://codecov.io/gh/aspathomas/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=4RT015GVCY)](https://codecov.io/gh/aspathomas/ceri-m1-techniques-de-test)
