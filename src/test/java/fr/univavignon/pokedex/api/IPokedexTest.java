@@ -3,6 +3,7 @@ package fr.univavignon.pokedex.api;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 // import java.util.Comparator;
 import java.util.List;
 
@@ -44,30 +45,26 @@ public class IPokedexTest {
         assertEquals(list, iPokedex.getPokemons());
     }
 
-	// @Test
-	// public void testGetPokemonComparator() {
-	// 	Pokemon pokemon1 = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
-    //     Pokemon pokemon2 = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 1);
-	// 	List<Pokemon> list = new ArrayList<Pokemon>();
-    // 	list.add(pokemon1);
-	// 	list.add(pokemon2);
-	// 	Comparator<Pokemon> comparator = new Comparator<Pokemon>() {
-	// 		public int compare(Pokemon pokemon1, Pokemon pokemon2) {
-	// 			boo result = pokemon1.attack.compareTo(o1.desciption);
+	@Test
+	public void testGetPokemonComparator() {
+		Pokemon pokemon1 = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
+        Pokemon pokemon2 = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 1);
+		List<Pokemon> list = new ArrayList<Pokemon>();
+    	list.add(pokemon2);
+		list.add(pokemon1);
 		
-	// 			if (result == 0) {
-	// 				return o1.priority - o2.priority;
-	// 			}
+		Comparator<Pokemon> attackComparator = new Comparator<Pokemon>() {
+			public int compare(Pokemon pokemon1, Pokemon pokemon2) {
+				int result = Integer.compare(pokemon1.getAttack(), pokemon2.getAttack());
 		
-	// 			return result;
+				if (result == 0) {
+					result = Integer.compare(pokemon1.getDefense(), pokemon2.getDefense());
+				}
 		
-	// 		}
-	// 	};
-
-	// 	Mockito.when(iPokedex.getPokemons()).thenReturn(list);
-    //     assertEquals(list, iPokedex.getPokemons());
-    // }
-
-	// List<Pokemon> getPokemons(Comparator<Pokemon> order);
-
+				return result;
+			}
+		};
+		Mockito.when(iPokedex.getPokemons(attackComparator)).thenReturn(list);
+        assertEquals(list, iPokedex.getPokemons(attackComparator));
+    }
 }
