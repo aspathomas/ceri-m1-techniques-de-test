@@ -6,9 +6,12 @@ import java.util.List;
 public class Pokedex implements IPokedex {
 
     private List<Pokemon> pokemons;
+    private PokemonMetadataProvider metadataProvider;
+    private PokemonFactory pokemonFactory;
 
-    public Pokedex(List<Pokemon> pokemons) {
-        this.pokemons = pokemons;
+    public Pokedex(PokemonMetadataProvider metadataProvider, PokemonFactory pokemonFactory) {
+        this.metadataProvider = metadataProvider;
+        this.pokemonFactory = pokemonFactory;
     }
 
     public Pokedex() {
@@ -36,8 +39,7 @@ public class Pokedex implements IPokedex {
     }
 
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
-        PokemonFactory pokemonFactory = new PokemonFactory();
-        Pokemon pokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
+        Pokemon pokemon = this.pokemonFactory.createPokemon(index, cp, hp, dust, candy);
         this.pokemons.add(pokemon);
         return pokemon;
     }
