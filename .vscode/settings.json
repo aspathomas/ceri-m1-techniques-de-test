@@ -1,3 +1,3 @@
 {
-    "java.checkstyle.configuration": "${workspaceFolder}/pom.xml"
+    "java.checkstyle.configuration": "${workspaceFolder}/target/checkstyle-checker.xml"
 }
