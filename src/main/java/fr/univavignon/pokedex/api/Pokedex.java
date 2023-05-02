@@ -1,5 +1,6 @@
 package fr.univavignon.pokedex.api;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,9 +13,7 @@ public class Pokedex implements IPokedex {
     public Pokedex(PokemonMetadataProvider metadataProvider, PokemonFactory pokemonFactory) {
         this.metadataProvider = metadataProvider;
         this.pokemonFactory = pokemonFactory;
-    }
-
-    public Pokedex() {
+        this.pokemons = new ArrayList<>();
     }
 
     public int size() {
@@ -23,19 +22,24 @@ public class Pokedex implements IPokedex {
 
     public int addPokemon(Pokemon pokemon) {
         this.pokemons.add(pokemon);
-        return 0;
+        return this.pokemons.size() - 1;
     }
 
     public Pokemon getPokemon(int id) throws PokedexException {
+        if (id < 0 || id >= this.pokemons.size()) {
+            throw new PokedexException("Invalid Pokemon ID");
+        }
         return this.pokemons.get(id);
     }
 
     public List<Pokemon> getPokemons() {
-        return this.pokemons;
+        return List.copyOf(this.pokemons);
     }
 
     public List<Pokemon> getPokemons(Comparator<Pokemon> order) {
-        return null;
+        List<Pokemon> sortedPokemons = new ArrayList<>(this.pokemons);
+        sortedPokemons.sort(order);
+        return List.copyOf(sortedPokemons);
     }
 
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
@@ -45,6 +49,6 @@ public class Pokedex implements IPokedex {
     }
 
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-        return null;
+        return this.metadataProvider.getPokemonMetadata(index);
     }
 }
