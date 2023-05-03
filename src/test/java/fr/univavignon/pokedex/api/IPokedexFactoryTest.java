@@ -10,8 +10,8 @@ public class IPokedexFactoryTest {
 
     @Test
     public void testCreatePokedex() throws PokedexException {
-        IPokemonMetadataProvider metadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
-        IPokemonFactory pokemonFactory = Mockito.mock(IPokemonFactory.class);
+        IPokemonMetadataProvider metadataProvider = new PokemonMetadataProvider();
+        IPokemonFactory pokemonFactory = new PokemonFactory();
 
         IPokedexFactory pokedexFactory = new PokedexFactory();
 
