@@ -44,3 +44,5 @@ ILSEN Alt-1
 
 
 [![codecov](https://codecov.io/gh/aspathomas/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=4RT015GVCY)](https://codecov.io/gh/aspathomas/ceri-m1-techniques-de-test)
+
+![Checkstyle](./docs/badges/checkstyle-result.svg)
