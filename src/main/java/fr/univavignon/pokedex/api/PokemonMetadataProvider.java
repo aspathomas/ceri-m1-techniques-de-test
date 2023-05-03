@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import org.apache.commons.io.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
 	private static final String RESOURCE_NAME = "pokemon-metadata.json";
