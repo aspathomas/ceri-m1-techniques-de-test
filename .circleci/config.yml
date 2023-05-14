@@ -38,7 +38,7 @@ jobs:
               git config user.name "aspathomas"
         - add_keys:
             fingerprints:
-              - "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"
+              - "<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>"
         - run:
             name: Deploy docs to gh-pages branch
             command: gh-pages --dist docs/
