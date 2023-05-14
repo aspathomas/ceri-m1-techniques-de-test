@@ -2,57 +2,57 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@3.2.3
 jobs:
-
-  build_and_test:
+  build-and-test:
     docker:
       - image: cimg/openjdk:11.0
-
     steps:
       - checkout
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-
       - run:
           name: Test
           command: mvn test
       - codecov/upload
+  docs:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
       - run:
-          name: Docs-Build
-          command: javadoc -d docs src/main/java/fr/univavignon/pokedex/api/* 
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "aspa.thomas@gmail.com"
+            git config user.name "aspathomas"
+      - run:
+          name: Build Docs
+          command: javadoc -d docs src/main/java/fr/univavignon/pokedex/api/*
       - persist_to_workspace:
           root: .
           paths: docs
-    docs-deploy:
-      docker:
-        - image: node:8.10.0
-      steps:
-        - checkout
-        - attach_workspace:
-            at: docs/
-        - run:
-            name: Install and configure dependencies
-            command: |
-              npm install -g --silent gh-pages@2.0.1
-              git config user.email "aspa.thomas@gmail.com"
-              git config user.name "aspathomas"
-        - run:
-            name: Deploy docs to gh-pages branch
-            command: |
-              git remote remove origin
-              git remote add origin https://aspathomas:${GH_PAGES_TOKEN}@github.com/aspathomas/ceri-m1-techniques-de-test.git
-              gh-pages --dist docs/
-
-
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - attach_workspace:
+          at: docs/
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: |
+            git remote remove origin
+            git remote add origin https://aspathomas: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@github.com/aspathomas/ceri-m1-techniques-de-test.git
+            gh-pages --dist docs/
 
 workflows:
   build-and-test:
     jobs:
       - build-and-test
-      - docs
-      - docs-deploy:
+      - docs:
           requires:
             - build-and-test
+      - docs-deploy:
+          requires:
             - docs
           filters:
             branches:
