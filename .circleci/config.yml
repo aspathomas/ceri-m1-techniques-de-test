@@ -36,7 +36,7 @@ jobs:
               npm install -g --silent gh-pages@3.0.0
               git config user.email "aspa.thomas@gmail.com"
               git config user.name "aspathomas"
-        - add_ssh_keys:
+        - add_keys:
             fingerprints:
               - "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"
         - run:
