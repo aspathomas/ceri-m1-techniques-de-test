@@ -17,6 +17,32 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload
+      - run:
+          name: Docs-Build
+          command: javadoc -d docs src/main/java/fr/univavignon/pokedex/api/* 
+      - persist_to_workspace:
+          root: .
+          paths: docs
+    docs-deploy:
+      docker:
+        - image: node:20
+      steps:
+        - checkout
+        - attach_workspace:
+            at: docs/
+        - run:
+            name: Install and configure dependencies
+            command: |
+              npm install -g --silent gh-pages@3.0.0
+              git config user.email "aspa.thomas@gmail.com"
+              git config user.name "aspathomas"
+        - add_ssh_keys:
+            fingerprints:
+              - "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"
+        - run:
+            name: Deploy docs to gh-pages branch
+            command: gh-pages --dist docs/
+
 
 
 workflows:
@@ -26,3 +52,7 @@ workflows:
         filters:
           branches:
             only: master
+      - docs
+      - docs-deploy:
+          requires:
+            - docs
