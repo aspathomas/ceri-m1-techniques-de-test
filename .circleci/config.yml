@@ -53,7 +53,7 @@ jobs:
           name: Deploy docs to gh-pages branch
           command: |
             git remote remove origin
-            git remote add origin https://aspathomas:${JAVA_DOC_TOKEN}@github.com/aspathomas/ceri-m1-techniques-de-test.git
+            git remote add origin https://aspathomas:${GH_PAGES_TOKEN}@github.com/aspathomas/ceri-m1-techniques-de-test.git
             gh-pages --dist docs/
 
 
