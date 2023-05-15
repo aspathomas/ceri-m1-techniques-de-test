@@ -2,9 +2,8 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@3.2.4
-
 jobs:
-  build_and_test:
+  build-and-test:
     docker:
       - image: cimg/openjdk:11.0
     steps:
@@ -31,39 +30,42 @@ jobs:
           name: Installation of OpenJDK
           command: sudo apt-get install openjdk-11-jdk-headless -y
       - run:
-          name: Building JavaDocs
-          command: javadoc -d docs src/main/java/fr/univavignon/pokedex/api/*
+          name: Build-docs
+          command: javadoc src/main/java/fr/univavignon/pokedex/api/* -d docs
       - persist_to_workspace:
           root: .
           paths: docs
+
   docs-deploy:
     docker:
-      - image: node:20
+      - image: node:8.10.0
     steps:
       - checkout
       - attach_workspace:
           at: docs/
       - run:
           name: Install and configure dependencies
-          command:  |
-            npm install -g --silent gh-pages@3.0.0
-            git config --global user.email "aspa.thomas@gmail.com"
-            git config --global user.name "aspathomas"
-      - add_ssh_keys:
-          fingerprints:
-            - "11:6b:11:59:ef:94:3b:57:5d:d9:da:06:1e:aa:e7:ef"
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "aspa.thomas@gmail.com"
+            git config user.name "aspathomas"
       - run:
-          name: Deployment of documents in the gh-pages branch
-          command: gh-pages --dist docs/
+          name: Deploy docs to gh-pages branch
+          command: |
+            git remote remove origin
+            git remote add origin https://aspathomas:${JAVA_DOC_TOKEN}@github.com/aspathomas/ceri-m1-techniques-de-test.git
+            gh-pages --dist docs/
+
 
 workflows:
-  build_and_test:
+  build-and-test:
     jobs:
-      - build_and_test:
-        filters:
-            branches:
-              only: master
+      - build-and-test
       - docs
       - docs-deploy:
           requires:
+            - build-and-test
             - docs
+          filters:
+            branches:
+              only: master
